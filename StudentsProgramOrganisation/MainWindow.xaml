@@ -1,0 +1,36 @@
+﻿<Window x:Class="StudentsProgramOrganisation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentsProgramOrganisation"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         Background="{DynamicResource MaterialDesignPaper}"
+         FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Organizator" Height="800" Width="1440" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Ustawienia</TextBlock>
+                <Button Style="{DynamicResource MaterialDesignFloatingActionButton}" Margin="0 15">Opcje</Button>
+                <Button Style="{DynamicResource MaterialDesignFlatButton}" Name="Exit_Button" Click="Exit_Button_Click">Wyjdź</Button>
+            </StackPanel>
+            <StackPanel>
+                <!--Data grid inside grid because of scrolling ability -->
+                <Grid>
+                    <DataGrid Style="{DynamicResource MaterialDesignDataGrid}" Name="TimeTable_DataGrid" Width="699" Height="700"></DataGrid>
+                </Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="5 5" Name="AddSubject_Button" Click="AddSubject_Button_Click">Dodaj</Button>
+                    <Button Style="{DynamicResource MaterialDesignRaisedLightButton}" Margin="5 5" Name="DeleteSubject_Button">Usuń</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
