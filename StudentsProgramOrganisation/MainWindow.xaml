@@ -13,23 +13,79 @@
          TextOptions.TextRenderingMode="Auto"
          Background="{DynamicResource MaterialDesignPaper}"
          FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Organizator" Height="800" Width="1440" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="Organizator" Height="800" Width="1440" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
+    <Grid Margin="10 10">
         <StackPanel Orientation="Horizontal">
+            <!--Options-->
             <StackPanel>
-                <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Ustawienia</TextBlock>
+                <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="10">Ustawienia</TextBlock>
                 <Button Style="{DynamicResource MaterialDesignFloatingActionButton}" Margin="0 15">Opcje</Button>
                 <Button Style="{DynamicResource MaterialDesignFlatButton}" Name="Exit_Button" Click="Exit_Button_Click">Wyjdź</Button>
             </StackPanel>
+            <!--TimeTable region-->
             <StackPanel>
+                <TextBlock Margin="5 5" FontWeight="Bold" FontSize="18">Podział godzin:</TextBlock>
                 <!--Data grid inside grid because of scrolling ability -->
-                <Grid>
-                    <DataGrid Style="{DynamicResource MaterialDesignDataGrid}" Name="TimeTable_DataGrid" Width="699" Height="700"></DataGrid>
+                <Grid Height="305">
+                    <DataGrid Style="{DynamicResource MaterialDesignDataGrid}" Name="TimeTable_DataGrid" Width="699" Margin="0,0,0.2,10"/>
                 </Grid>
-                <StackPanel Orientation="Horizontal">
-                    <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="5 5" Name="AddSubject_Button" Click="AddSubject_Button_Click">Dodaj</Button>
-                    <Button Style="{DynamicResource MaterialDesignRaisedLightButton}" Margin="5 5" Name="DeleteSubject_Button">Usuń</Button>
-                </StackPanel>
+                <Expander Header="Zarządzanie zajęciami">
+                    <Grid>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Margin="5 5" Name="AddSubject_Button" Click="AddSubject_Button_Click">Dodaj</Button>
+                                <Calendar Margin="5" Name="AddSubject_Callendar"></Calendar>
+                                <StackPanel>
+                                    <Label Margin="5 5" FontWeight="Bold">Nazwa:</Label>
+                                    <TextBox Width="290" Margin="5 5" Name="AddSubjectName_TextBox"></TextBox>
+                                    <Label Margin="5 5" FontWeight="Bold">Godzina: </Label>
+                                    <materialDesign:TimePicker Margin="5 5" Name="AddSubject_TimePicker"></materialDesign:TimePicker>
+                                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Margin="0 20"> Usuń zajęcia: </TextBlock>
+                                    <StackPanel Margin="0 10">
+                                        <Label Margin="5 5" FontWeight="Bold" HorizontalAlignment="Center">Usuń wybrany element.</Label>
+                                        <!--<TextBox Width="50" Margin="5 5" Name="DeleteSubjectId_TextBox"></TextBox>-->
+                                        <Button Style="{DynamicResource MaterialDesignRaisedLightButton}" Margin="5 5" Name="DeleteSubject_Button" Click="DeleteSubject_Button_Click">Usuń</Button>
+                                    </StackPanel>
+                                </StackPanel>
+ 
+                                
+                            </StackPanel>
+                            
+                        </StackPanel>
+                        
+                    </Grid>
+                </Expander>
+            </StackPanel>
+            <!--JakDojade + Exams and how to learn-->
+            <StackPanel>
+                <Grid>
+                    <WebBrowser Height="400" Width="600" Source="https://jakdojade.pl/rzeszow/trasa/" Name="WB"/>
+                </Grid>
+                <Grid>
+                    <Expander Header="Egzaminy"  FontSize="16">
+                        <Grid Width="612" Height="338">
+                            <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <DataGrid Style="{DynamicResource MaterialDesignDataGrid}" Height="300" Width="310"></DataGrid>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" Width="342">
+                                    <StackPanel Width="281" HorizontalAlignment="Center" Margin="5">
+                                        <TextBox Width="333" Margin="5">nazwa egzaminu..</TextBox>
+                                        <StackPanel Orientation="Horizontal" Margin="5">
+                                            <Label>Wybierz date</Label>
+                                            <materialDesign:PopupBox Margin="10 0">
+                                                <Calendar></Calendar>
+                                            </materialDesign:PopupBox>
+                                        </StackPanel>
+                                        <Button Margin="5 5" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="AddExam_Button" Click="AddExam_Button_Click">Dodaj egzamin</Button>
+                                        <Button Margin="5 5" Name="DeleteExam_Button" Click="DeleteExam_Button_Click">Usuń  egzamin</Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                            
+                        </Grid>
+                    </Expander>
+                </Grid>
             </StackPanel>
         </StackPanel>
     </Grid>

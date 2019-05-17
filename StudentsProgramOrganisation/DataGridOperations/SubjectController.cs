@@ -14,16 +14,31 @@ namespace StudentsProgramOrganisation.DataGridOperations
         {
             var subjectsDb = _studentsOrgEntities.Subjects;
 
-            if (SubjectValidation(subject)) subjectsDb.Add(subject);
+            subjectsDb.Add(subject);
 
+            _studentsOrgEntities.SaveChanges();
         }
         public void DeleteSubject(int id)
         {
+            
+            try
+            {
+                var subjectsDb = _studentsOrgEntities.Subjects;
 
+                Subjects subjectToDelete = subjectsDb.Single(n => n.subjectId == id);
+
+                subjectsDb.Remove(subjectToDelete);
+
+                _studentsOrgEntities.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                System.Windows.MessageBox.Show(e.Message);           
+            }
+                  
         }
 
-        // Unit testing = false;
-        // gitHuB
+        // Unit testing
         public bool SubjectValidation(Subjects subject)
         {
             if (subject.subjectName != null && string.IsNullOrEmpty(subject.subjectName) != true)

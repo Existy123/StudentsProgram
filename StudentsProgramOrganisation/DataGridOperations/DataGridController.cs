@@ -22,17 +22,19 @@ namespace StudentsProgramOrganisation.DataGridOperations
         {
             try
             {
-                StudentsOrgEntities entities = new StudentsOrgEntities();
 
-                ICollection<DataBase.Subjects> subjects = new List<Subjects>();
-
-                foreach (var subject in entities.Subjects)
+                using (StudentsOrgEntities entities = new StudentsOrgEntities())
                 {
-                    subjects.Add(subject);
-                }
+                    ICollection<DataBase.Subjects> subjects = new List<Subjects>();
 
-                this.DataGrid.ItemsSource = OrderSubjectsByDate(subjects);
-               
+                    foreach (var subject in entities.Subjects)
+                    {
+                        subjects.Add(subject);
+                    }
+
+                    this.DataGrid.ItemsSource = OrderSubjectsByDate(subjects);
+                }
+                             
             }
             catch (Exception e)
             {
