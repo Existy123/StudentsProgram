@@ -106,7 +106,9 @@
       <DependentUpon>StudentBase.tt</DependentUpon>
     </Compile>
     <Compile Include="DataGridOperations\DataGridController.cs" />
+    <Compile Include="DataGridOperations\ExamController.cs" />
     <Compile Include="DataGridOperations\SubjectController.cs" />
+    <Compile Include="DataGridOperations\ToLearnController.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

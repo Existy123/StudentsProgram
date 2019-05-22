@@ -29,7 +29,10 @@ namespace StudentsProgramOrganisation
             InitializeComponent();
 
             DataGridController gridController = new DataGridController(TimeTable_DataGrid);
-            gridController.SetDataSource();
+            DataGridController examsGridController = new DataGridController(ExamGrid);
+
+            gridController.SetDataSourceForSubjects();
+            examsGridController.SetDataSourceForExams();
 
             SetWebBrowserSilient();
         }
@@ -82,27 +85,34 @@ namespace StudentsProgramOrganisation
             }
             
             DataGridController gridController = new DataGridController(TimeTable_DataGrid);
-            gridController.SetDataSource();
+            gridController.SetDataSourceForSubjects();
         }
 
         private void DeleteSubject_Button_Click(object sender, RoutedEventArgs e)
         {
-
-            var val = (Subjects)TimeTable_DataGrid.SelectedValue;
+            Subjects subjectToDelete = new Subjects();
+            try
+            {
+                var val = (Subjects)TimeTable_DataGrid.SelectedValue;
+                subjectToDelete = val;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Prosze zaznaczyc poprawny obiekt. ");
+            }
+            
 
             int deletedId = new int();
             try
             {
-                deletedId = val.subjectId;
+                deletedId = subjectToDelete.subjectId;
 
                 SubjectController controller = new SubjectController();
 
                 controller.DeleteSubject(deletedId);
 
                 DataGridController gridController = new DataGridController(TimeTable_DataGrid);
-                gridController.SetDataSource();
-
-                MessageBox.Show("Pomyślne usunięcie przedmiotu.");
+                gridController.SetDataSourceForSubjects();
             }
             catch (Exception)
             {
@@ -113,11 +123,53 @@ namespace StudentsProgramOrganisation
 
         private void AddExam_Button_Click(object sender, RoutedEventArgs e)
         {
+            var examName = this.ExamName_TextBox.Text;
+            var examDate = this.ExamDate_Calendar.SelectedDate;
+            ExamController controller = new ExamController();
+
+            try
+            {
+                controller.AddExam(new Exams() { examName = examName, examTime = examDate });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
         private void DeleteExam_Button_Click(object sender, RoutedEventArgs e)
         {
+            Exams examToDelete = new Exams();
+            try
+            {
+                var itemToDelete = (Exams)ExamGrid.SelectedValue;
+                examToDelete = itemToDelete;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Prosze zaznaczyc obiekt");
+            }       
+            try
+            {
+                ExamController controller = new ExamController();
+                if(controller.ExamValidation(examToDelete))
+                {
+                    controller.DeleteExam(examToDelete.examId);
+
+                    DataGridController gridController = new DataGridController(ExamGrid);
+                    gridController.SetDataSourceForExams();
+                }                
+            }
+            catch (Exception ex)
+            {
+                //  skonczylem tutaj. Testuj i naprawiaj
+
+
+
+                MessageBox.Show(ex.Message, "Wystapil blad.");
+            }
+
 
         }
     }

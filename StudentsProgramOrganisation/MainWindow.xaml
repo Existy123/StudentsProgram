@@ -55,6 +55,9 @@
                         
                     </Grid>
                 </Expander>
+                <Expander Header="Nauka do egzaminu" ExpandDirection="Up" FlowDirection="RightToLeft">
+                    <DataGrid Name="WhatToLearnToday_DataGrid" Height="362"></DataGrid>
+                </Expander>
             </StackPanel>
             <!--JakDojade + Exams and how to learn-->
             <StackPanel>
@@ -66,15 +69,15 @@
                         <Grid Width="612" Height="338">
                             <StackPanel Orientation="Horizontal">
                                 <Grid>
-                                    <DataGrid Style="{DynamicResource MaterialDesignDataGrid}" Height="300" Width="310"></DataGrid>
+                                    <DataGrid Style="{DynamicResource MaterialDesignDataGrid}" Height="300" Width="310" Name="ExamGrid"></DataGrid>
                                 </Grid>
                                 <StackPanel Orientation="Horizontal" Width="342">
                                     <StackPanel Width="281" HorizontalAlignment="Center" Margin="5">
-                                        <TextBox Width="333" Margin="5">nazwa egzaminu..</TextBox>
+                                        <TextBox Width="333" Margin="5" Name="ExamName_TextBox">nazwa egzaminu..</TextBox>
                                         <StackPanel Orientation="Horizontal" Margin="5">
                                             <Label>Wybierz date</Label>
                                             <materialDesign:PopupBox Margin="10 0">
-                                                <Calendar></Calendar>
+                                                <Calendar Name="ExamDate_Calendar"></Calendar>
                                             </materialDesign:PopupBox>
                                         </StackPanel>
                                         <Button Margin="5 5" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Name="AddExam_Button" Click="AddExam_Button_Click">Dodaj egzamin</Button>
