@@ -19,7 +19,7 @@
             <!--Options-->
             <StackPanel>
                 <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" Margin="10">Ustawienia</TextBlock>
-                <Button Style="{DynamicResource MaterialDesignFloatingActionButton}" Margin="0 15">Opcje</Button>
+                <Button Style="{DynamicResource MaterialDesignFloatingActionButton}" Margin="0 15" Padding="5">Dni nauki</Button>
                 <Button Style="{DynamicResource MaterialDesignFlatButton}" Name="Exit_Button" Click="Exit_Button_Click">Wyjdź</Button>
             </StackPanel>
             <!--TimeTable region-->
@@ -56,8 +56,12 @@
                     </Grid>
                 </Expander>
                 <Expander Header="Nauka do egzaminu" ExpandDirection="Up" FlowDirection="RightToLeft">
-                    <DataGrid Name="WhatToLearnToday_DataGrid" Height="362"></DataGrid>
-                </Expander>
+                    <StackPanel>
+                        <Grid>
+                            <DataGrid Name="WhatToLearnToday_DataGrid" Height="362"></DataGrid>
+                        </Grid>
+                    </StackPanel>
+                </Expander> 
             </StackPanel>
             <!--JakDojade + Exams and how to learn-->
             <StackPanel>

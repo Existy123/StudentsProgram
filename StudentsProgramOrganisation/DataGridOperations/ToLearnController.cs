@@ -12,30 +12,48 @@ namespace StudentsProgramOrganisation.DataGridOperations
     {
         private readonly StudentsOrgEntities _studentsOrgEntities = new StudentsOrgEntities();
         private readonly string _examName;
+        private readonly double _learningTime;
 
-        public ToLearnController(string examName)
+        public ToLearnController(string examName,double learningTime)
         {
             _examName = examName;
-        }
-        public void AddAndSaveLearnCycle(double learningTime)
+            _learningTime = learningTime;
+        }        
+
+        public void AddAndSaveLearnCycle()
         {
             var learnTable = _studentsOrgEntities.LearningDays;
 
             var learnDay = new LearningDays()
                         {
                             subjectName = _examName,
-                            learningTimeAmount = learningTime
+                            learningTimeAmount = _learningTime
                         };
+            if (CheckIfLearnDayIsNotInTable()) learnTable.Add(learnDay);
 
-            learnTable.Add(learnDay);
             _studentsOrgEntities.SaveChanges();
         }
+        public void DeleteLearningDayIfExamDeleteClicked()
+        {
+            var learnTable = _studentsOrgEntities.LearningDays;
+            var learnDayToDelete = learnTable.Single(n => n.subjectName == _examName);
 
-        // moze by tak stworzyc model, w ktorym jest pozostala liczba godzin i przycisk ktory pozwala na zmniejszenie ilosci czasu
-        // i po prostu by sie go klikalo i calosc by zapisywala sie w bazie danych. gdy np. klika przycisk to jest -1 godzina i np.
-        // gdy dochodzi do 0 albo niżej to w zmniejszgodzine() jest warunek ze jesli wartosc godziny tego entity pobranej z bazy danych
-        // jest = 0 badz mniej to wywolywany jest kod do usuniecia tego obiektu co w prostym tlumaczeniu ulatwilo by prace i nie musial bym robic
-        // zadnych metod na daty itd.
+            learnTable.Remove(learnDayToDelete);        
+            _studentsOrgEntities.SaveChanges();
+        }
+        private bool CheckIfLearnDayIsNotInTable()
+        {
+            var learnTable = _studentsOrgEntities.LearningDays;
+
+            foreach (var learningDay in learnTable)
+            {
+                if (learningDay.subjectName != _examName) continue;
+                else return false;
+            }
+            return true;
+                
+        }
+
 
     }
 }

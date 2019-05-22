@@ -30,9 +30,11 @@ namespace StudentsProgramOrganisation
 
             DataGridController gridController = new DataGridController(TimeTable_DataGrid);
             DataGridController examsGridController = new DataGridController(ExamGrid);
+            DataGridController learningDaysController = new DataGridController(WhatToLearnToday_DataGrid);
 
             gridController.SetDataSourceForSubjects();
             examsGridController.SetDataSourceForExams();
+            learningDaysController.SetDataSourceForLearningDays();
 
             SetWebBrowserSilient();
         }
@@ -129,7 +131,18 @@ namespace StudentsProgramOrganisation
 
             try
             {
-                controller.AddExam(new Exams() { examName = examName, examTime = examDate });
+                Exams exam = new Exams() { examName = examName, examTime = examDate };
+                controller.AddExam(exam);
+
+                ToLearnController toLearnController = new ToLearnController(exam.examName, 10);
+
+                toLearnController.AddAndSaveLearnCycle();
+
+                DataGridController dataGridController = new DataGridController(ExamGrid);
+                dataGridController.SetDataSourceForExams();
+
+                dataGridController.DataGrid = WhatToLearnToday_DataGrid;
+                dataGridController.SetDataSourceForLearningDays();
             }
             catch (Exception ex)
             {
@@ -153,24 +166,30 @@ namespace StudentsProgramOrganisation
             try
             {
                 ExamController controller = new ExamController();
-                if(controller.ExamValidation(examToDelete))
+                controller.DeleteExam(examToDelete.examId);
+                try
                 {
-                    controller.DeleteExam(examToDelete.examId);
+                        ToLearnController toLearnController = new ToLearnController(examToDelete.examName, 10);
+                        toLearnController.DeleteLearningDayIfExamDeleteClicked();
+                }
+                catch (Exception ex)
+                {
+                        MessageBox.Show(ex.Message);
+                }
 
-                    DataGridController gridController = new DataGridController(ExamGrid);
-                    gridController.SetDataSourceForExams();
-                }                
+                DataGridController gridController = new DataGridController(ExamGrid);
+                gridController.SetDataSourceForExams();
+                gridController.DataGrid = WhatToLearnToday_DataGrid;
+                gridController.SetDataSourceForLearningDays();                              
             }
             catch (Exception ex)
             {
-                //  skonczylem tutaj. Testuj i naprawiaj
-
-
-
                 MessageBox.Show(ex.Message, "Wystapil blad.");
             }
 
 
         }
+
+
     }
 }

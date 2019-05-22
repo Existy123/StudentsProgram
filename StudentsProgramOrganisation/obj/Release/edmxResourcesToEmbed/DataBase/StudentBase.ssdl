@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StudentsOrgModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Exams">
+    <Key>
+      <PropertyRef Name="examId" />
+    </Key>
+    <Property Name="examId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="examName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="examTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LearningDays">
+    <Key>
+      <PropertyRef Name="dayId" />
+    </Key>
+    <Property Name="dayId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subjectName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="learningTimeAmount" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subjects">
+    <Key>
+      <PropertyRef Name="subjectId" />
+    </Key>
+    <Property Name="subjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subjectName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="subjectTime" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="StudentsOrgModelStoreContainer">
+    <EntitySet Name="Exams" EntityType="Self.Exams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LearningDays" EntityType="Self.LearningDays" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

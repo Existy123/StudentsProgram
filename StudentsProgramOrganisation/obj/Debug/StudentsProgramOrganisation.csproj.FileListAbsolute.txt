@@ -24,3 +24,5 @@ C:\Users\Michal\source\repos\SProgOrg\StudentsProgram\StudentsProgramOrganisatio
 C:\Users\Michal\source\repos\SProgOrg\StudentsProgram\StudentsProgramOrganisation\obj\Debug\StudentsProgramOrganisation.exe
 C:\Users\Michal\source\repos\SProgOrg\StudentsProgram\StudentsProgramOrganisation\obj\Debug\StudentsProgramOrganisation.pdb
 C:\Users\Michal\source\repos\SProgOrg\StudentsProgram\StudentsProgramOrganisation\obj\Debug\StudentsProgramOrganisation.csprojAssemblyReference.cache
+C:\Users\Michal\source\repos\SProgOrg\StudentsProgram\StudentsProgramOrganisation\obj\Debug\AddLearnDayWindow.g.cs
+C:\Users\Michal\source\repos\SProgOrg\StudentsProgram\StudentsProgramOrganisation\obj\Debug\AddLearnDayWindow.baml

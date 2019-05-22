@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StudentsOrgModelStoreContainer" CdmEntityContainer="StudentsOrgEntities">
+    <EntitySetMapping Name="Exams">
+      <EntityTypeMapping TypeName="StudentsOrgModel.Exams">
+        <MappingFragment StoreEntitySet="Exams">
+          <ScalarProperty Name="examId" ColumnName="examId" />
+          <ScalarProperty Name="examName" ColumnName="examName" />
+          <ScalarProperty Name="examTime" ColumnName="examTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LearningDays">
+      <EntityTypeMapping TypeName="StudentsOrgModel.LearningDays">
+        <MappingFragment StoreEntitySet="LearningDays">
+          <ScalarProperty Name="dayId" ColumnName="dayId" />
+          <ScalarProperty Name="subjectName" ColumnName="subjectName" />
+          <ScalarProperty Name="learningTimeAmount" ColumnName="learningTimeAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects">
+      <EntityTypeMapping TypeName="StudentsOrgModel.Subjects">
+        <MappingFragment StoreEntitySet="Subjects">
+          <ScalarProperty Name="subjectId" ColumnName="subjectId" />
+          <ScalarProperty Name="subjectName" ColumnName="subjectName" />
+          <ScalarProperty Name="subjectTime" ColumnName="subjectTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
